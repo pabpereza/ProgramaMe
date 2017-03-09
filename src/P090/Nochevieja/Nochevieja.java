@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package P90.Nochevieja;
+package P090.Nochevieja;
 
 import java.util.GregorianCalendar;
 import java.util.Scanner;
