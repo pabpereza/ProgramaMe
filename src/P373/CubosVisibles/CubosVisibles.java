@@ -22,8 +22,8 @@ public class CubosVisibles {
         for (int i = 0; i < numCasos; i++) {
 
             int dimension = entrada.nextInt();
-
-            //                Cubos en la base y en la cabeza  + aristas           + interior caras laterales 
+            
+            //               Cubos en la base y en la cabeza  + aristas           + interior caras laterales 
             long resultado = (long) Math.pow(dimension, 2) * 2 + 4 *(dimension-2)  + (long)Math.pow(dimension-2,2) * 4 ;
             System.out.println(resultado);
 

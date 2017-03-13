@@ -40,7 +40,6 @@ public class LosDalton {
                 daltonD = false;
             }
             anterior = actual;
-
         }
 
         if (daltonA || daltonD) {

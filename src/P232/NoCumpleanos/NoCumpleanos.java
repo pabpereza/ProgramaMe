@@ -5,48 +5,83 @@
  */
 package P232.NoCumpleanos;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class NoCumpleanos {
-    public static void main(String[] args) throws IOException {
-        String c ="0 0 0 0 0 0",a="";
-        int[] calendar = {31,28,31,30,31,30,31,31,30,31,30,31};
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        while ( ( a = bf.readLine()).compareTo(c) != 0 ){
+
+    static Scanner entrada = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        String c = "0 0 0 0 0 0", a = "";
+        int[] diasMeses = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+        while (!(a = entrada.nextLine()).equals(c)) {
             String[] fechas = a.split(" ");
-            comp(fechas,calendar);
-        } 
-    }
-    
-    public static void comp(String[] fechas,int[] cal){
-        if(Integer.parseInt(fechas[0]) != Integer.parseInt(fechas[3]) && 
-                Integer.parseInt(fechas[1]) != Integer.parseInt(fechas[4]) ){
-            System.out.println(calDias(fechas, cal));
-        }else{
-            System.out.println(""+0); 
+            calcular(fechas, diasMeses);
         }
     }
+
+    static void calcular(String[] fechasS, int[] diasMeses) {
+
+        int diasTotales = 0;
+
+        int diaNac = Integer.parseInt(fechasS[0]);
+        int mesNac = Integer.parseInt(fechasS[1]);
+        int anoNac = Integer.parseInt(fechasS[2]);
+
+        int diaAct = Integer.parseInt(fechasS[3]);
+        int mesAct = Integer.parseInt(fechasS[4]);
+        int anoAct = Integer.parseInt(fechasS[5]);
+        
     
-    public static int calDias(String[] fechas, int[] calendar){
-        int total = 0;
-        
-        //Transcurrido año nacimiento
-        total += calendar[Integer.parseInt(fechas[1])-1]- Integer.parseInt(fechas[0]);        
-        for (int i = Integer.parseInt(fechas[1]); i < 12; i++) {
-            total += calendar[i];
+        //Si ya ha pasado un ano
+        if (diaNac == diaAct && mesAct == mesNac) {
+            
+        } else if (anoAct > anoNac) {
+
+            //Dias de su primer año de vida
+            int diasAux = 0;
+            for (int i = 0; i < mesNac - 1; i++) {
+                diasAux += diasMeses[i];
+            }
+            diasAux += diaNac;
+            diasTotales += 365 - diasAux;
+
+            //Años entremedio
+            diasTotales += (anoAct - anoNac - 1) * 364;
+
+            //Dias del ano final
+            for (int i = 0; i < mesAct - 1; i++) {
+                diasTotales += diasMeses[i];
+            }
+            diasTotales += diaAct;
+
+            //Si estamos en el mismo año en el que ha nacido         
+        } else {
+
+            //Si no ha pasado ni un mes
+            if (mesAct == mesNac) {
+                diasTotales += diaAct - diaNac;
+
+                //Si no...
+            } else {
+
+                //Dias del primer mes
+                diasTotales += diasMeses[mesNac - 1] - diaNac;
+
+                //Dias de entremedio
+                for (int i = mesNac; i < mesAct - 1; i++) {
+                    diasTotales += diasMeses[i];
+                }
+
+                //Dias finales
+                diasTotales += diaAct;
+
+            }
+
         }
         
-        //Trancurrido año actual
-        total += Integer.parseInt(fechas[3]);
-        for (int i = Integer.parseInt(fechas[4])-1; i < 12; i++) {
-            total += calendar[i-1];
-        }
-        
-        //Trancurrido entre medio
-        total +=(Integer.parseInt(fechas[5]) - Integer.parseInt(fechas[2]) -1)*364;
-        
-        return total;
-    }     
+        System.out.println(diasTotales);
+    }
+
 }

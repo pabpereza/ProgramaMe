@@ -37,7 +37,6 @@ public class DividirFactoriales {
                 fNum1 = fNum1 * i;
             }
 
-            
             System.out.println(fNum1);
         }
 
