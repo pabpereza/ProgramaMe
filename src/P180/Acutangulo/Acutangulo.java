@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package P180.Acutangulo;
 
 import java.util.Arrays;
@@ -18,14 +13,14 @@ public class Acutangulo {
     
     public static void main(String[] args) {
         
-        int numCasos = entrada.nextInt();
-        
+        int numCasos = entrada.nextInt();    
+
         for (int i = 0; i < numCasos; i++) {
             calcular();
         }
         
     }
-    
+
     static void calcular(){
         
         double[] lados = new double[3];
