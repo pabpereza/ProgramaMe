@@ -18,6 +18,7 @@ public class PanBodas {
 
         }
     }
+    
 
     public static void comp(int aux, String linea){ 
         if(linea.indexOf("D")!= -1 &&  linea.indexOf("I")!=-1){
